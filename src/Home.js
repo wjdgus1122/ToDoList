@@ -1,5 +1,6 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Wrap = styled.div`
@@ -14,22 +15,26 @@ const TodoWrap = styled.div`
   width: 70%;
   height: 80%;
   background-color: white;
+`;
+const TitleWrap = styled.div`
+  background-color: salmon;
   padding: 0 50px;
 `;
 const Title = styled.h3`
   font-size: 50px;
   font-weight: 900;
-  color: salmon;
+  color: beige;
   padding-top: 70px;
   padding-bottom: 20px;
 `;
 const Date = styled.h4`
   font-size: 25px;
   font-weight: 900;
-  color: salmon;
+  color: beige;
+  padding-bottom: 20px;
 `;
 const ListWrap = styled.form`
-  padding-top: 50px;
+  padding: 50px 50px 0 50px;
 `;
 const List = styled.div`
   width: 100%;
@@ -49,11 +54,25 @@ const Btn = styled.button`
 `;
 
 export const Home = () => {
+  const [tdset, setTdset] = useState(``);
+  useEffect(() => {
+    const homesetting = () => {
+      const date = new Date();
+      const tdyear = String(date.getYear());
+      const tdmonth = String(date.getMonth());
+      const tddate = String(date.getDate());
+      setTdset(`${tdyear}.${tdmonth}.${tddate}`);
+    };
+    homesetting();
+  }, []);
+
   return (
     <Wrap>
       <TodoWrap>
-        <Title>To_Do_List</Title>
-        <Date>2022.8.15</Date>
+        <TitleWrap>
+          <Title>To_Do_List</Title>
+          <Date>{tdset}</Date>
+        </TitleWrap>
         <ListWrap>
           <List>
             <Text placehorder="내용을 입력하세요."></Text>
