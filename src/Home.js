@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { DoInput } from "./DoInput";
+import { DoList } from "./DoList";
 
 const Wrap = styled.div`
   width: 100%;
@@ -38,6 +39,7 @@ const TDate = styled.h4`
 
 export const Home = () => {
   const [tdset, setTdset] = useState(``);
+  const [todotext, setToDoText] = useState(``);
 
   useEffect(() => {
     const homesetting = () => {
@@ -57,7 +59,8 @@ export const Home = () => {
           <Title>To_Do_List</Title>
           <TDate>{tdset}</TDate>
         </TitleWrap>
-        <DoInput />
+        <DoInput todotext={todotext} setToDoText={setToDoText} />
+        <DoList todotext={todotext} setToDoText={setToDoText} />
       </TodoWrap>
     </Wrap>
   );

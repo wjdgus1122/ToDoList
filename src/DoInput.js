@@ -2,6 +2,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import styled from "styled-components";
+import { DoList } from "./DoList";
 
 const ListWrap = styled.form`
   padding: 50px;
@@ -29,13 +30,18 @@ const Btn = styled.button`
   color: salmon;
 `;
 
-export const DoInput = () => {
-  const [todotext, setToDoText] = useState(``);
+export const DoInput = ({ todotext, setToDoText }) => {
+  const [listtext, setListText] = useState();
   const inputchange = (e) => {
-    setToDoText(e.target.value);
+    setListText(e.target.value);
   };
   const buttonhandle = () => {
-    setToDoText(``);
+    const dolist = todotext.concat({
+      id: todotext.length,
+      listtext,
+    });
+    setToDoText(dolist);
+    setListText(``);
   };
   return (
     <>
@@ -44,7 +50,7 @@ export const DoInput = () => {
           <Text
             type="text"
             name="todolist"
-            value={todotext}
+            value={listtext}
             onChange={inputchange}
             placeholder="오늘 할 일을 입력하세요."
           ></Text>
