@@ -1,10 +1,10 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { DoList } from "./DoList";
+import PropTypes from "prop-types";
 
-const ListWrap = styled.form`
+const ListWrap = styled.div`
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -32,6 +32,7 @@ const Btn = styled.button`
 
 export const DoInput = ({ todotext, setToDoText }) => {
   const [listtext, setListText] = useState();
+  const inputRef = useRef(null);
   const inputchange = (e) => {
     setListText(e.target.value);
   };
@@ -42,7 +43,11 @@ export const DoInput = ({ todotext, setToDoText }) => {
     });
     setToDoText(dolist);
     setListText(``);
+    inputRef.current.focus();
   };
+  useEffect(() => {
+    console.log(todotext);
+  }, [todotext]);
   return (
     <>
       <ListWrap>
@@ -51,6 +56,7 @@ export const DoInput = ({ todotext, setToDoText }) => {
             type="text"
             name="todolist"
             value={listtext}
+            ref={inputRef}
             onChange={inputchange}
             placeholder="오늘 할 일을 입력하세요."
           ></Text>
@@ -61,4 +67,14 @@ export const DoInput = ({ todotext, setToDoText }) => {
       </ListWrap>
     </>
   );
+};
+
+DoInput.propTypes = {
+  todotext: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      text: PropTypes.string,
+    })
+  ),
+  setToDoText: PropTypes.func,
 };

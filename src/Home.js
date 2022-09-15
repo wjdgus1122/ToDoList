@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { DoInput } from "./DoInput";
 import { DoList } from "./DoList";
+import { mainStyle } from "./style/Globalstyle";
 
 const Wrap = styled.div`
   width: 100%;
@@ -17,7 +18,7 @@ const TodoWrap = styled.div`
   background-color: white;
 `;
 const TitleWrap = styled.div`
-  background-color: salmon;
+  background-color: ${mainStyle.mainColor};
   padding: 0 50px;
   display: flex;
   flex-direction: column;
@@ -26,20 +27,20 @@ const TitleWrap = styled.div`
 const Title = styled.h3`
   font-size: 50px;
   font-weight: 900;
-  color: beige;
+  color: ${mainStyle.thirdColor};
   padding-top: 70px;
   padding-bottom: 20px;
 `;
 const TDate = styled.h4`
   font-size: 25px;
   font-weight: 900;
-  color: beige;
+  color: ${mainStyle.thirdColor};
   padding-bottom: 20px;
 `;
 
 export const Home = () => {
   const [tdset, setTdset] = useState(``);
-  const [todotext, setToDoText] = useState(``);
+  const [todotext, setToDoText] = useState([]);
 
   useEffect(() => {
     const homesetting = () => {
