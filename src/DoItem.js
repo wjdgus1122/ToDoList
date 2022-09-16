@@ -21,11 +21,6 @@ const ListCheck = styled.li`
   & .trash {
     color: lightgray;
   }
-  & .checkwrap #check:checked {
-    & .pen {
-      display: none;
-    }
-  }
 `;
 const TextWrap = styled.div`
   display: flex;
@@ -82,13 +77,19 @@ const ListButton = styled.button`
 export const DoItem = ({ toitem, todotext, setToDoText }) => {
   const [penedit, setPenEdit] = useState(false);
   const [newList, setNewList] = useState(toitem.text);
+  const checktext = () => {
+    const changeinput = todotext.map((con) => ({
+      ...con,
+      checked: con.id === toitem.id ? !con.checked : con.checked,
+    }));
+    setToDoText(changeinput);
+  };
   const edithandle = () => {
     if (penedit == true) {
       const changeinput = todotext.map((con) => ({
         ...con,
         listtext: con.id === toitem.id ? newList : con.listtext,
       }));
-      console.log(newList);
       setToDoText(changeinput);
       setPenEdit(false);
     } else {
@@ -101,7 +102,12 @@ export const DoItem = ({ toitem, todotext, setToDoText }) => {
   return (
     <ListCheck>
       <TextWrap className="checkwrap">
-        <ListInput type="checkbox" className="check" id={toitem.id} />
+        <ListInput
+          type="checkbox"
+          className="check"
+          id={toitem.id}
+          onChange={checktext}
+        />
         <label for={toitem.id}>
           <FontAwesomeIcon icon={faCheck} />{" "}
         </label>
@@ -112,15 +118,17 @@ export const DoItem = ({ toitem, todotext, setToDoText }) => {
         )}
       </TextWrap>
       <ButtonWrap className="button">
-        {penedit ? (
-          <ListButton className="pen" onClick={edithandle}>
-            <FontAwesomeIcon icon={faCircleCheck} />
-          </ListButton>
-        ) : (
-          <ListButton className="pen" onClick={edithandle}>
-            <FontAwesomeIcon icon={faPen} />
-          </ListButton>
-        )}
+        {!toitem.checked ? (
+          penedit ? (
+            <ListButton className="pen" onClick={edithandle}>
+              <FontAwesomeIcon icon={faCircleCheck} />
+            </ListButton>
+          ) : (
+            <ListButton className="pen" onClick={edithandle}>
+              <FontAwesomeIcon icon={faPen} />
+            </ListButton>
+          )
+        ) : null}
         <ListButton className="trash">
           <FontAwesomeIcon icon={faTrashCan} />
         </ListButton>
