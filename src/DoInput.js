@@ -5,7 +5,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const ListWrap = styled.div`
-  padding: 50px;
+  padding: 50px 50px 20px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
