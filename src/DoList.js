@@ -16,13 +16,16 @@ export const DoList = ({ todotext, setToDoText }) => {
     <Wrap>
       <ListWrap>
         {todotext &&
-          todotext.map((con) => (
-            <DoItem
-              toitem={con}
-              todotext={todotext}
-              setToDoText={setToDoText}
-            />
-          ))}
+          todotext.map((con) => {
+            if (con.delete) return null;
+            return (
+              <DoItem
+                toitem={con}
+                todotext={todotext}
+                setToDoText={setToDoText}
+              />
+            );
+          })}
       </ListWrap>
     </Wrap>
   );

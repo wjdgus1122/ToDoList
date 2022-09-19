@@ -84,6 +84,13 @@ export const DoItem = ({ toitem, todotext, setToDoText }) => {
     }));
     setToDoText(changeinput);
   };
+  const deletetext = () => {
+    const changeinput = todotext.map((con) => ({
+      ...con,
+      delete: con.id === toitem.id ? true : con.delete,
+    }));
+    setToDoText(changeinput);
+  };
   const edithandle = () => {
     if (penedit == true) {
       const changeinput = todotext.map((con) => ({
@@ -129,7 +136,7 @@ export const DoItem = ({ toitem, todotext, setToDoText }) => {
             </ListButton>
           )
         ) : null}
-        <ListButton className="trash">
+        <ListButton className="trash" onClick={deletetext}>
           <FontAwesomeIcon icon={faTrashCan} />
         </ListButton>
       </ButtonWrap>
