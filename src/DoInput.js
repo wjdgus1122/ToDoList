@@ -9,6 +9,9 @@ const ListWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media screen and (max-width: 500px) {
+    padding: 20px;
+  }
 `;
 const List = styled.div`
   width: 100%;

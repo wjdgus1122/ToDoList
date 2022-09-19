@@ -49,6 +49,17 @@ const TextWrap = styled.div`
     text-decoration: line-through;
     color: lightgray;
   }
+  @media screen and (max-width: 500px) {
+    font-size: 18px;
+    & label {
+      width: 18px;
+      height: 18px;
+      border-radius: 3px;
+      svg {
+        font-size: 12px;
+      }
+    }
+  }
 `;
 const ListInput = styled.input`
   display: none;

@@ -16,6 +16,10 @@ const TodoWrap = styled.div`
   width: 50%;
   height: 80%;
   background-color: white;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: 100%;
+  }
 `;
 const TitleWrap = styled.div`
   background-color: ${mainStyle.mainColor};
@@ -30,6 +34,9 @@ const Title = styled.h3`
   color: ${mainStyle.thirdColor};
   padding-top: 70px;
   padding-bottom: 20px;
+  @media screen and (max-width: 500px) {
+    padding-top: 40px;
+  }
 `;
 const TDate = styled.h4`
   font-size: 25px;
