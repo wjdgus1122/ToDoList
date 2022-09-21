@@ -5,6 +5,7 @@
 ## Toy_Project : To_Do_List
 
 - [x] 매일 할일을 메모 할 수 있는 List사이트입니다.
+- [x] 반응형O
 
 ### :calendar: 제작기간 : 2022 8.13 ~ 2022 9.19
 
